@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  # Simple HTTP-only deployment (for testing)
+  cim-dota-http:
+    build: .
+    container_name: cim-dota-http
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
