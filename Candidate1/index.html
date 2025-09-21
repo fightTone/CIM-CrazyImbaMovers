@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIM - Crazy Imba Movers</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- SVG Filters for Electric Effects -->
+    <svg class="svg-container">
+        <defs>
+            <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+                <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+                    <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+                <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+                    <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
+                <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
+                    <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
+                <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
+                    <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+                </feOffset>
+
+                <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+                <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+                <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+
+                <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="container">
+        <!-- Power Button Section -->
+        <div id="power-section" class="power-section">
+            <div class="power-button-wrapper">
+                <button id="power-btn" class="power-button">
+                    <div class="power-icon">⚡</div>
+                </button>
+                <h1 class="team-name">CIM</h1>
+                <p class="team-subtitle">Crazy Imba Movers</p>
+            </div>
+        </div>
+
+        <!-- Main Content (Hidden Initially) -->
+        <div id="main-content" class="main-content hidden">
+            <header class="header">
+                <h1 class="title">CIM - Crazy Imba Movers</h1>
+                <p class="subtitle">The old days are gone, but the bond remains strong</p>
+                <p class="description">We're no longer in competitive gaming, but we still play Dota in Turbo mode.<br>
+                Jobs, families, and life priorities come first, but our friendship endures through every match.</p>
+            </header>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-card">
+
+                        <!-- Profile Header Section -->
+                        <div class="profile-header">
+                            <div class="profile-left">
+                                <h3 class="member-name">Player One</h3>
+                                <p class="member-handle">@carry • Since 2018</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="C:\Users\qgee1\Works\Personal\CIM-Dota\players\Kiven.jpg" alt="Player 1">
+                            </div>
+                        </div>
+
+                        <!-- Stats Section -->
+                        <div class="stats-section">
+                            <div class="stat-item">
+                                <div class="stat-number">850</div>
+                                <div class="stat-label">⚡ MMR</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">25</div>
+                                <div class="stat-label">🔥 Win Streak</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2.1K</div>
+                                <div class="stat-label">🏆 Games Won</div>
+                            </div>
+                        </div>
+
+                        <!-- Position and About -->
+                        <div class="member-info">
+                            <p class="member-position">Carry</p>
+                            <p class="member-about">The reliable farmer who always gets his items, no matter how chaotic the game gets.</p>
+                        </div>
+
+                        <!-- Best Heroes Tags -->
+                        <div class="best-heroes">
+                            <span class="hero-tag">#Anti-Mage</span>
+                            <span class="hero-tag">#Phantom-Assassin</span>
+                            <span class="hero-tag">#Juggernaut</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-card">
+
+                        <!-- Profile Header Section -->
+                        <div class="profile-header">
+                            <div class="profile-left">
+                                <h3 class="member-name">Player Two</h3>
+                                <p class="member-handle">@midlaner • Since 2017</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="C:\Users\qgee1\Works\Personal\CIM-Dota\players\Kenneth.jpg" alt="Player 2">
+                            </div>
+                        </div>
+
+                        <!-- Stats Section -->
+                        <div class="stats-section">
+                            <div class="stat-item">
+                                <div class="stat-number">1.2K</div>
+                                <div class="stat-label">⚡ MMR</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">42</div>
+                                <div class="stat-label">🔥 Win Streak</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">3.5K</div>
+                                <div class="stat-label">🏆 Games Won</div>
+                            </div>
+                        </div>
+
+                        <!-- Position and About -->
+                        <div class="member-info">
+                            <p class="member-position">Mid</p>
+                            <p class="member-about">The strategic mastermind who calls the shots and dominates the mid lane.</p>
+                        </div>
+
+                        <!-- Best Heroes Tags -->
+                        <div class="best-heroes">
+                            <span class="hero-tag">#Invoker</span>
+                            <span class="hero-tag">#Storm-Spirit</span>
+                            <span class="hero-tag">#Queen-of-Pain</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-card">
+
+                        <!-- Profile Header Section -->
+                        <div class="profile-header">
+                            <div class="profile-left">
+                                <h3 class="member-name">Player Three</h3>
+                                <p class="member-handle">@offlaner • Since 2019</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="C:\Users\qgee1\Works\Personal\CIM-Dota\players\Adong.jpg" alt="Player 3">
+                            </div>
+                        </div>
+
+                        <!-- Stats Section -->
+                        <div class="stats-section">
+                            <div class="stat-item">
+                                <div class="stat-number">950</div>
+                                <div class="stat-label">⚡ MMR</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">18</div>
+                                <div class="stat-label">🔥 Win Streak</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1.8K</div>
+                                <div class="stat-label">🏆 Games Won</div>
+                            </div>
+                        </div>
+
+                        <!-- Position and About -->
+                        <div class="member-info">
+                            <p class="member-position">Offlaner</p>
+                            <p class="member-about">The resilient initiator who thrives in chaos and starts every team fight.</p>
+                        </div>
+
+                        <!-- Best Heroes Tags -->
+                        <div class="best-heroes">
+                            <span class="hero-tag">#Axe</span>
+                            <span class="hero-tag">#Pudge</span>
+                            <span class="hero-tag">#Tidehunter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-card">
+
+                        <!-- Profile Header Section -->
+                        <div class="profile-header">
+                            <div class="profile-left">
+                                <h3 class="member-name">Player Four</h3>
+                                <p class="member-handle">@support • Since 2020</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="C:\Users\qgee1\Works\Personal\CIM-Dota\players\Gee.jpg" alt="Player 4">
+                            </div>
+                        </div>
+
+                        <!-- Stats Section -->
+                        <div class="stats-section">
+                            <div class="stat-item">
+                                <div class="stat-number">720</div>
+                                <div class="stat-label">⚡ MMR</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">15</div>
+                                <div class="stat-label">🔥 Win Streak</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1.5K</div>
+                                <div class="stat-label">🏆 Games Won</div>
+                            </div>
+                        </div>
+
+                        <!-- Position and About -->
+                        <div class="member-info">
+                            <p class="member-position">Support</p>
+                            <p class="member-about">The selfless guardian who keeps everyone alive and secures vision.</p>
+                        </div>
+
+                        <!-- Best Heroes Tags -->
+                        <div class="best-heroes">
+                            <span class="hero-tag">#Crystal-Maiden</span>
+                            <span class="hero-tag">#Dazzle</span>
+                            <span class="hero-tag">#Lion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-card">
+
+                        <!-- Profile Header Section -->
+                        <div class="profile-header">
+                            <div class="profile-left">
+                                <h3 class="member-name">Player Five</h3>
+                                <p class="member-handle">@hardsupport • Since 2016</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="C:\Users\qgee1\Works\Personal\CIM-Dota\players\Tacandong.jpg" alt="Player 5">
+                            </div>
+                        </div>
+
+                        <!-- Stats Section -->
+                        <div class="stats-section">
+                            <div class="stat-item">
+                                <div class="stat-number">680</div>
+                                <div class="stat-label">⚡ MMR</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">32</div>
+                                <div class="stat-label">🔥 Win Streak</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2.8K</div>
+                                <div class="stat-label">🏆 Games Won</div>
+                            </div>
+                        </div>
+
+                        <!-- Position and About -->
+                        <div class="member-info">
+                            <p class="member-position">Hard Support</p>
+                            <p class="member-about">The ultimate team player who sacrifices everything for the team's success.</p>
+                        </div>
+
+                        <!-- Best Heroes Tags -->
+                        <div class="best-heroes">
+                            <span class="hero-tag">#Lich</span>
+                            <span class="hero-tag">#Warlock</span>
+                            <span class="hero-tag">#Shadow-Shaman</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube Player (hidden) -->
+    <div id="youtube-player" style="position: absolute; top: -1000px; left: -1000px;"></div>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>

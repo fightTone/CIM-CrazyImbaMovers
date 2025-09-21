@@ -1,0 +1,44 @@
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* SVG positioning */
+.svg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: visible;
+}
+
+.main-content {
+    padding: 2rem;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 1s ease;
+}
+
+.main-content.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    pointer-events: none;
+}
+
+/* Additional effects */
+.container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 153, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}

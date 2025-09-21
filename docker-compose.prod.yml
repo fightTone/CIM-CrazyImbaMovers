@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # Nginx Reverse Proxy
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - nginx-proxy-certs:/etc/nginx/certs
+      - nginx-proxy-vhost:/etc/nginx/vhost.d
+      - nginx-proxy-html:/usr/share/nginx/html
+    networks:
+      - nginx-proxy
+
+  # Let's Encrypt SSL Companion
+  letsencrypt:
+    image: nginxproxy/acme-companion
+    container_name: nginx-proxy-letsencrypt
+    restart: unless-stopped
+    depends_on:
+      - nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - nginx-proxy-certs:/etc/nginx/certs
+      - nginx-proxy-vhost:/etc/nginx/vhost.d
+      - nginx-proxy-html:/usr/share/nginx/html
+    environment:
+      - DEFAULT_EMAIL=admin@pietone.com
+    networks:
+      - nginx-proxy
+
+  # CIM Dota Application
+  cim-dota:
+    build: .
+    container_name: cim-dota-prod
+    restart: unless-stopped
+    depends_on:
+      - nginx-proxy
+      - letsencrypt
+    environment:
+      - VIRTUAL_HOST=cim.pietone.com
+      - LETSENCRYPT_HOST=cim.pietone.com
+      - LETSENCRYPT_EMAIL=admin@pietone.com
+      - NODE_ENV=production
+    networks:
+      - nginx-proxy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  nginx-proxy:
+    external: true
+
+volumes:
+  nginx-proxy-certs:
+  nginx-proxy-vhost:
+  nginx-proxy-html:

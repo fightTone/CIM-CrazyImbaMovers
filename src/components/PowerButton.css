@@ -1,0 +1,199 @@
+/* Power Button Section */
+.power-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 10;
+    transition: all 1s ease;
+}
+
+.power-section.fade-out {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.power-button-wrapper {
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.power-button {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+    border: none;
+    font-size: 4rem;
+    color: var(--electric-border-color);
+    transition: all 0.3s ease;
+}
+
+.power-button::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 4px solid var(--electric-border-color);
+    background: radial-gradient(
+        circle,
+        rgba(0, 212, 255, 0.2),
+        var(--color-neutral-900),
+        #000
+    );
+    filter: url(#turbulent-displace);
+    z-index: -3;
+    animation: electricRing 4s ease-in-out infinite;
+}
+
+.power-button::after {
+    content: '';
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        var(--electric-bright),
+        var(--electric-light-color),
+        var(--electric-border-color),
+        transparent 70%
+    );
+    filter: blur(25px);
+    opacity: 0.6;
+    z-index: -4;
+    animation: electricGlow 5s ease-in-out infinite;
+}
+
+@keyframes electricRing {
+    0%, 100% {
+        border-color: var(--electric-border-color);
+        box-shadow:
+            0 0 15px var(--electric-border-color),
+            inset 0 0 10px rgba(0, 212, 255, 0.2);
+    }
+    50% {
+        border-color: var(--electric-light-color);
+        box-shadow:
+            0 0 25px var(--electric-light-color),
+            0 0 40px var(--electric-border-color),
+            inset 0 0 15px rgba(0, 212, 255, 0.4);
+    }
+}
+
+@keyframes electricGlow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+.power-button:hover {
+    transform: scale(1.1);
+    color: var(--electric-bright);
+}
+
+.power-button:hover::before {
+    animation: electricRingHover 2s ease-in-out infinite;
+    border-width: 6px;
+}
+
+.power-button:hover::after {
+    opacity: 1;
+    filter: blur(35px);
+    animation: electricGlowHover 3s ease-in-out infinite;
+}
+
+@keyframes electricRingHover {
+    0%, 100% {
+        border-color: var(--electric-light-color);
+        box-shadow:
+            0 0 20px var(--electric-light-color),
+            0 0 35px var(--electric-border-color),
+            inset 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+    50% {
+        border-color: var(--electric-bright);
+        box-shadow:
+            0 0 30px var(--electric-bright),
+            0 0 50px var(--electric-light-color),
+            0 0 70px var(--electric-border-color),
+            inset 0 0 30px rgba(0, 212, 255, 0.7);
+    }
+}
+
+@keyframes electricGlowHover {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.power-button:active {
+    transform: scale(0.95);
+}
+
+.power-icon {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.team-name {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-top: 2rem;
+    text-shadow:
+        0 0 30px var(--electric-cyan),
+        0 0 60px var(--electric-border-color),
+        3px 3px 0px var(--electric-blue),
+        -3px -3px 0px var(--electric-cyan);
+    letter-spacing: 0.2em;
+    position: relative;
+    color: var(--electric-bright);
+}
+
+.team-name::before {
+    content: 'CIM';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--electric-cyan);
+    opacity: 0.7;
+    animation: glitchClone 2s infinite linear alternate;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.team-subtitle {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    opacity: 0.8;
+    letter-spacing: 0.1em;
+}

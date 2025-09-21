@@ -1,0 +1,80 @@
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 2rem;
+    position: relative;
+    border-radius: 24px;
+    border: 2px solid var(--electric-border-color);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 212, 255, 0.1),
+        rgba(0, 212, 255, 0.02) 50%,
+        rgba(0, 255, 255, 0.1) 100%
+    ),
+    var(--glass-bg);
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 10px 32px rgba(0, 212, 255, 0.3),
+        0 20px 48px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 212, 255, 0.2);
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    border: 2px solid var(--electric-border-color);
+    background: transparent;
+    filter: url(#turbulent-displace);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    text-shadow:
+        0 0 20px var(--electric-cyan),
+        0 0 40px var(--electric-border-color),
+        2px 2px 0px var(--electric-blue),
+        -2px -2px 0px var(--electric-cyan);
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: glitch 3s infinite linear alternate-reverse;
+    color: var(--electric-bright);
+    z-index: 10;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--electric-cyan);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px var(--electric-cyan);
+    z-index: 10;
+    position: relative;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    position: relative;
+}

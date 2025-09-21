@@ -1,0 +1,107 @@
+/* CSS Variables */
+:root {
+    --electric-border-color: #00d4ff;
+    --electric-light-color: #7df9ff;
+    --electric-bright: #ffffff;
+    --electric-cyan: #00ffff;
+    --electric-blue: #0099ff;
+    --electric-dark: #001122;
+    --glass-bg: rgba(15, 15, 35, 0.8);
+    --gradient-color: rgba(0, 212, 255, 0.4);
+    --color-neutral-900: #1a1a2e;
+    --ease: cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', system-ui, -apple-system, sans-serif;
+    background: #08090d;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0a0a0f, #1a0a1a, #0f0a1a);
+    background-size: 100% 100%;
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glow {
+    0% { opacity: 0; }
+    3% { opacity: 1; }
+    10% { opacity: 0; }
+    12% { opacity: 0.7; }
+    16% { opacity: 0.3; animation-timing-function: var(--ease); }
+    100% { opacity: 1; animation-timing-function: var(--ease); }
+}
+
+@keyframes flash {
+    0% { opacity: 0; }
+    7% { opacity: 0.5; }
+    14% { opacity: 0; }
+    21%, 100% { opacity: 1; }
+}
+
+@keyframes glitch {
+    0%, 90%, 100% {
+        transform: translate(0);
+    }
+    92% {
+        transform: translate(-2px, 1px);
+    }
+    94% {
+        transform: translate(2px, -1px);
+    }
+    96% {
+        transform: translate(-1px, 2px);
+    }
+    98% {
+        transform: translate(1px, -2px);
+    }
+}
+
+@keyframes glitchClone {
+    0% {
+        transform: translateX(0);
+    }
+    10% {
+        transform: translateX(-2px);
+    }
+    20% {
+        transform: translateX(2px);
+    }
+    30% {
+        transform: translateX(-1px);
+    }
+    40% {
+        transform: translateX(1px);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+}
