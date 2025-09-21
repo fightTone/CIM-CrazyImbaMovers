@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PowerButton from './components/PowerButton';
 import Header from './components/Header';
 import TeamGrid from './components/TeamGrid';
@@ -7,55 +7,26 @@ import './App.css';
 
 function App() {
   const [isActivated, setIsActivated] = useState(false);
-  const [musicPlayer, setMusicPlayer] = useState(null);
+  const audioRef = useRef(null);
 
   useEffect(() => {
-    // Load YouTube IFrame API
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    // Define onYouTubeIframeAPIReady globally
-    window.onYouTubeIframeAPIReady = () => {
-      const player = new window.YT.Player('youtube-player', {
-        height: '0',
-        width: '0',
-        videoId: 'afcFRz81yTg',
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          disablekb: 1,
-          enablejsapi: 1,
-          fs: 0,
-          iv_load_policy: 3,
-          modestbranding: 1,
-          rel: 0,
-          showinfo: 0,
-          start: 0,
-          end: 0
-        },
-        events: {
-          onReady: (event) => {
-            setMusicPlayer(event.target);
-          }
-        }
-      });
-    };
-
-    return () => {
-      if (window.YT && window.YT.loaded) {
-        window.onYouTubeIframeAPIReady = null;
-      }
-    };
+    // Initialize audio element
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+      audioRef.current.loop = true;
+    }
   }, []);
 
   const handleActivation = () => {
     setIsActivated(true);
 
     // Start music when activated
-    if (musicPlayer) {
-      musicPlayer.playVideo();
+    if (audioRef.current) {
+      try {
+        audioRef.current.play();
+      } catch (error) {
+        console.log('Music playback failed:', error);
+      }
     }
   };
 
@@ -63,8 +34,15 @@ function App() {
     <div className="App">
       <ElectricFilter />
 
-      {/* Hidden YouTube player */}
-      <div id="youtube-player" style={{ display: 'none' }}></div>
+      {/* Background music audio element */}
+      <audio
+        ref={audioRef}
+        preload="auto"
+        style={{ display: 'none' }}
+      >
+        <source src="/background-music.webm" type="audio/webm" />
+        Your browser does not support the audio element.
+      </audio>
 
       <div className="container">
         {!isActivated ? (
