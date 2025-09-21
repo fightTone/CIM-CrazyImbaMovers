@@ -41,6 +41,12 @@ docker-compose -f docker-compose.prod.yml up -d --build
 # Check deployment status
 ./status.sh
 
+# Debug SSL issues
+./debug-ssl.sh
+
+# Fix SSL configuration
+./fix-ssl.sh
+
 # View logs
 docker-compose -f docker-compose.prod.yml logs -f
 
@@ -50,6 +56,36 @@ docker-compose -f docker-compose.prod.yml restart cim-dota
 # Stop everything
 docker-compose -f docker-compose.prod.yml down
 ```
+
+## 🔄 **Updating Your Website**
+
+### **When You Need to Rebuild (React/Frontend Changes):**
+- ✅ Changes to `src/` folder (React components, CSS, JavaScript)
+- ✅ New features or UI updates
+- ✅ Changes to `package.json` dependencies
+- ✅ Changes to `Dockerfile` or `nginx.conf`
+
+```bash
+# For frontend changes - full rebuild
+git pull
+./quick-deploy.sh
+```
+
+### **When You Don't Need to Rebuild (Config-Only Changes):**
+- ❌ Changes to `docker-compose.prod.yml`
+- ❌ Changes to shell scripts (`.sh` files)
+- ❌ Documentation updates (`README.md`)
+
+```bash
+# For config-only changes - just restart
+git pull
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+### **🎯 Simple Rule:**
+- **Changed React code?** → Use `./quick-deploy.sh` (rebuilds)
+- **Changed only config files?** → Use `docker-compose restart`
+- **When in doubt?** → Use `./quick-deploy.sh` (always safe!)
 
 ## 🌐 Access the Website
 
